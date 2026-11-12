@@ -1,0 +1,18 @@
+services:
+  - type: worker
+    name: kino-telegram-bot
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python main.py
+    plan: starter
+    disk:
+      name: kino-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: ADMINS
+        value: "7618611292"
+      - key: DB_PATH
+        value: /var/data/kino_bot.db
